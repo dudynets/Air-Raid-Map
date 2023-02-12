@@ -1,0 +1,31 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0d0d0d;
+}
+
+body svg {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+body svg path {
+  transition: fill 0.2s;
+  cursor: pointer;
+}
+
+body svg path:hover {
+  fill: #2c2c2c;
+}
+
+body svg path.enabled {
+  fill: rgb(42, 0, 0);
+}
