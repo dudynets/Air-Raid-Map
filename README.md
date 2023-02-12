@@ -8,6 +8,8 @@
 
 > Developed by [Oleksandr Dudynets](https://dudynets.me)
 
+[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://vshymanskyy.github.io/StandWithUkraine)
+
 ## License
 
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License.
