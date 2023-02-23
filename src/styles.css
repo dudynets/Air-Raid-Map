@@ -27,5 +27,5 @@ body svg path:hover {
 }
 
 body svg path.enabled {
-  fill: rgb(42, 0, 0);
+  fill: #930013;
 }

@@ -59,11 +59,17 @@ function appendTitles() {
 
 // Function that fetches data from the API and returns an array of enabled regions
 async function fetchData() {
+  // API endpoint and key in Base64
   const ENDPOINT =
-    'https://emapa.fra1.cdn.digitaloceanspaces.com/statuses.json';
+    'https://alerts.com.ua/api/states';
+  const KEY = 'ODRhMzNhOTY5YmY5Y2IzMGU0MzA0ODAzNGI1NjQyZDJjMDg3MjE5Yg==';
 
   // Fetch the data from the API
-  const response = await fetch(getCorsProxyUrl(ENDPOINT));
+  const response = await fetch(ENDPOINT, {
+    headers: {
+      'X-API-Key': atob(KEY)
+    }
+  });
 
   // Check if the response is ok
   if (!response.ok) {
@@ -80,31 +86,16 @@ async function fetchData() {
   const enabledRegions = [];
 
   // Loop through the states
-  for (const state in states) {
+  states.forEach(state => {
     // If the state is enabled
-    if (states[state].enabled) {
+    if (state.alert) {
       // Add it to the array
-      enabledRegions.push(convertRegionName(state, 'en'));
+      enabledRegions.push(convertRegionName(state.name, 'en'));
     }
-  }
+  });
 
   // Return the array of enabled regions
   return enabledRegions;
-}
-
-// Function that returns the URL for the CORS proxy, plus the URL that is passed to the function.
-// The function takes one parameter, 'url', which is the URL to be proxied.
-// If the URL starts with http:// or https://, then the URL for the CORS proxy and the URL are returned.
-// If the URL does not start with http:// or https://, then an Error is thrown.
-function getCorsProxyUrl(url) {
-  // If the URL starts with http:// or https://
-  if (url.startsWith('http://') || url.startsWith('https://')) {
-    // Return a string containing the URL for the CORS proxy and the URL
-    return `https://cors-anywhere.herokuapp.com/${url}`;
-  } else {
-    // Otherwise, throw an Error
-    throw new Error('URL must start with http:// or https://');
-  }
 }
 
 // Function that converts the Ukrainian name of a region to English, and vice versa.
@@ -121,33 +112,32 @@ function convertRegionName(name, language = 'uk') {
   // Array of Ukrainian and English region names
   const TRANSLATIONS = [
     ['АР Крим', 'Crimea'],
-    ["Севастополь'", 'Sevastopol'],
     ['Вінницька область', 'Vinnytsya'],
     ['Волинська область', 'Volyn'],
-    ['Дніпропетровська область', "Dnipropetrovs'k"],
-    ['Донецька область', "Donets'k"],
+    ['Дніпропетровська область', 'Dnipropetrovs\'k'],
+    ['Донецька область', 'Donets\'k'],
     ['Житомирська область', 'Zhytomyr'],
     ['Закарпатська область', 'Transcarpathia'],
     ['Запорізька область', 'Zaporizhzhya'],
-    ['Івано-Франківська область', "Ivano-Frankivs'k"],
-    ['Київська область', 'Kiev'],
+    ['Івано-Франківська область', 'Ivano-Frankivs\'k'],
+    ['Київська область', 'Kyiv'],
     ['Кіровоградська область', 'Kirovohrad'],
-    ['Луганська область', "Luhans'k"],
-    ['Львівська область', "L'viv"],
+    ['Луганська область', 'Luhans\'k'],
+    ['Львівська область', 'L\'viv'],
     ['Миколаївська область', 'Mykolayiv'],
     ['Одеська область', 'Odessa'],
     ['Полтавська область', 'Poltava'],
     ['Рівненська область', 'Rivne'],
     ['Сумська область', 'Sumy'],
-    ['Тернопільська область', "Ternopil'"],
+    ['Тернопільська область', 'Ternopil\''],
     ['Харківська область', 'Kharkiv'],
     ['Херсонська область', 'Kherson'],
-    ['Хмельницька область', "Khmel'nyts'kyy"],
+    ['Хмельницька область', 'Khmel\'nyts\'kyy'],
     ['Черкаська область', 'Cherkasy'],
     ['Чернівецька область', 'Chernivtsi'],
     ['Чернігівська область', 'Chernihiv'],
-    ['м. Київ', 'Kiev City'],
-    ['м. Севастополь', 'Sevastopol'],
+    ['м. Київ', 'Kyiv City'],
+    ['м. Севастополь', 'Sevastopol']
   ];
 
   // Find the translation array with the specified name in the TRANSLATIONS array.
