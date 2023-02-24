@@ -12,14 +12,30 @@ body {
   background-color: #0d0d0d;
 }
 
+body .footer {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  margin: 0;
+  font-family: 'Arial', 'sans-serif';
+  color: #fff;
+  opacity: 0.3;
+}
+
 body svg {
   max-width: 90vw;
   max-height: 90vh;
 }
 
 body svg path {
-  transition: fill 0.2s;
+  transition: all 0.2s;
   cursor: pointer;
+  outline: none;
 }
 
 body svg path:hover {
@@ -27,5 +43,11 @@ body svg path:hover {
 }
 
 body svg path.enabled {
-  fill: #930013;
+  fill: #1e0604;
+  stroke: #2e0806;
+}
+
+body svg path.enabled:hover {
+  fill: #2e0806;
+  stroke: #2e0806;
 }
