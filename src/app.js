@@ -107,7 +107,7 @@ async function fetchData() {
     _statuses.push({
       alert: state.alert,
       name: state.name,
-      changed: state.changd,
+      changed: state.changed,
     });
   });
 
@@ -226,7 +226,7 @@ function updateTitle(title, remove = false) {
     descriptionElement.textContent = changedString
       ? `Тривоги немає з: ${changedString}`
       : `Дані про ${
-          title.endsWith('область') ? 'цю область' : 'це місто'
+          title.startsWith('м.') ? 'це місто' : 'цю область'
         } відсутні`;
   }
 
