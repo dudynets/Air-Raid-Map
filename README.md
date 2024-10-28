@@ -1,5 +1,5 @@
 <a href="https://github.com/dudynets/Air-Raid-Map">
-  <img src="https://dudynets.pp.ua/assets/extra/favicon.png" alt="drawing" width="128"/>
+  <img src="https://dudynets.dev/assets/extra/favicon.png" alt="Oleksandr Dudynets logo" width="128"/>
 </a>
 
 # Air Raid Map
